@@ -1,0 +1,26 @@
+{
+  "name": "sonido",
+  "version": "1.0.0",
+  "description": "Amusical web-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaushalkoladiya/sonido-backend.git"
+  },
+  "author": "KAUSHAL",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaushalkoladiya/sonido-backend/issues"
+  },
+  "homepage": "https://github.com/kaushalkoladiya/sonido-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-validator": "^6.4.1",
+    "mongoose": "^5.9.14",
+    "nodemon": "^2.0.4"
+  }
+}
