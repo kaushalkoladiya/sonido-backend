@@ -3,6 +3,7 @@ const niv = require('node-input-validator');
 const User = require('../model/User');
 
 const AuthController = require('../controller/AuthController');
+const HomeController = require('../controller/HomeController');
 
 niv.extend('unique', async ({ value, args }) => {
   // default field is email in this method
@@ -48,14 +49,14 @@ module.exports = {
     return AuthController.signup(signupData, req);
   },
 
-  login:async ({ loginData }, req) => {
+  login: async ({ loginData }, req) => {
     const validatedData = new niv.Validator(loginData, {
       email: 'required|email',
       password: 'required|string',
     });
 
     const hasError = await validatedData.check();
-    
+
     if (!hasError) {
       const err = new Error('Validatoin Failed.');
       err.code = 400;
@@ -64,5 +65,10 @@ module.exports = {
     }
 
     return AuthController.login(loginData, req);
-  }
+  },
+
+  home: (args, req) => {
+    return HomeController.home(args, req);
+  },
+  
 }

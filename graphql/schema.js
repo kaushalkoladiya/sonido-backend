@@ -12,11 +12,24 @@ module.exports = buildSchema(`
 
   type RootQuery {
     login(loginData: LoginInputData): Token!
+    home: [User!]!
   }
 
   type Token {
     token: String!
     userId: String!
+  }
+
+  type User {
+    _id: ID!
+    email: String
+    username: String!
+    name: String
+    bio: String
+    website: String
+    location: String
+    createdAt: String!
+    updatedAt: String
   }
 
   input SignupInputData {
