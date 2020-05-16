@@ -4,6 +4,8 @@ const User = require('../model/User');
 
 const AuthController = require('../controller/AuthController');
 const HomeController = require('../controller/HomeController');
+const FollowUnfollowController = require('../controller/FollowUnfollowController');
+
 
 niv.extend('unique', async ({ value, args }) => {
   // default field is email in this method
@@ -70,5 +72,57 @@ module.exports = {
   home: (args, req) => {
     return HomeController.home(args, req);
   },
-  
+
+  follow: ({ followunfollowData: { _id } }, req) => {
+    if (!req.isAuth) {
+      const err = new Error('Action Forbidden');
+      err.code = 403;
+      throw err;
+    }
+
+    if (_id === req.userId) {
+      const err = new Error('You cannot follow yourself.');
+      err.code = 400;
+      throw err;
+    }
+
+    return FollowUnfollowController.follow(_id, req);
+  },
+
+  unfollow: ({ followunfollowData: { _id } }, req) => {
+    if (!req.isAuth) {
+      const err = new Error('Action Forbidden');
+      err.code = 403;
+      throw err;
+    }
+
+    if (_id === req.userId) {
+      const err = new Error('You cannot unfollow yourself.');
+      err.code = 400;
+      throw err;
+    }
+
+    return FollowUnfollowController.unfollow(_id, req);
+  },
+
+  followers: (args, req) => {
+    if (!req.isAuth) {
+      const err = new Error('Action Forbidden');
+      err.code = 403;
+      throw err;
+    }
+
+    return FollowUnfollowController.followers(args, req);
+  },
+
+  following: (args, req) => {
+    if (!req.isAuth) {
+      const err = new Error('Action Forbidden');
+      err.code = 403;
+      throw err;
+    }
+
+    return FollowUnfollowController.following(args, req);
+  },
+
 }

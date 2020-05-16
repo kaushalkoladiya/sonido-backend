@@ -8,11 +8,15 @@ module.exports = buildSchema(`
 
   type RootMutation {
     signup(signupData: SignupInputData): Token!
+    follow(followunfollowData: FollowUnfollowInputData): String!
+    unfollow(followunfollowData: FollowUnfollowInputData): String!
   }
 
   type RootQuery {
     login(loginData: LoginInputData): Token!
     home: [User!]!
+    followers: [Follower!]!
+    following: [Following!]!
   }
 
   type Token {
@@ -32,6 +36,18 @@ module.exports = buildSchema(`
     updatedAt: String
   }
 
+  type Follower {
+    _id: ID!
+    from: User!
+    to: String!
+  }
+
+  type Following {
+    _id: ID!
+    from: String!
+    to: User!
+  }
+
   input SignupInputData {
     email: String!
     username: String!
@@ -42,6 +58,10 @@ module.exports = buildSchema(`
   input LoginInputData {
     email: String!
     password: String!
+  }
+
+  input FollowUnfollowInputData {
+    _id: ID!
   }
 
 
