@@ -155,6 +155,24 @@ module.exports = {
       throw err;
     }
     return UserController.search(term, req);
+  },
+
+  showUser: ({ _id }, req) => {
+    if (!req.isAuth) {
+      const err = new Error('Action Forbidden');
+      err.code = 403;
+      throw err;
+    }
+    return UserController.show(_id, req);
+  },
+
+  editUser: ({ editUserData }, req) => {
+    if (!req.isAuth) {
+      const err = new Error('Action Forbidden');
+      err.code = 403;
+      throw err;
+    }
+    return UserController.update(editUserData, req);
   }
 
 }

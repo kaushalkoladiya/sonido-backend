@@ -11,6 +11,7 @@ module.exports = buildSchema(`
     follow(followunfollowData: FollowUnfollowInputData): String!
     unfollow(followunfollowData: FollowUnfollowInputData): String!
     dedicate(dedicateData: DedicateInputData): Dedicate!
+    editUser(editUserData: EditUserInputData): User!
   }
 
   type RootQuery {
@@ -19,6 +20,7 @@ module.exports = buildSchema(`
     followers: [Follower!]!
     following: [Following!]!
     searchUser(term: String!): [User!]!
+    showUser(_id: String!): User!
   }
 
   type Token {
@@ -133,5 +135,12 @@ module.exports = buildSchema(`
     genre: String!
     trackName: String!
     artistName: String!
+  }
+
+  input EditUserInputData {
+    name: String
+    bio: String
+    website: String
+    location: String
   }
 `);
