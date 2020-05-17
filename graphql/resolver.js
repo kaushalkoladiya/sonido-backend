@@ -6,6 +6,7 @@ const AuthController = require('../controller/AuthController');
 const HomeController = require('../controller/HomeController');
 const FollowUnfollowController = require('../controller/FollowUnfollowController');
 const DedicateController = require('../controller/DedicateController');
+const UserController = require('../controller/UserController');
 
 
 niv.extend('unique', async ({ value, args }) => {
@@ -140,6 +141,15 @@ module.exports = {
     }
 
     return DedicateController.dedicate(dedicateData, req);
+  },
+
+  searchUser: ({ term }, req) => {
+    if (!req.isAuth) {
+      const err = new Error('Action Forbidden');
+      err.code = 403;
+      throw err;
+    }
+    return UserController.search(term, req);
   }
 
 }

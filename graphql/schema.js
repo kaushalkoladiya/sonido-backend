@@ -18,6 +18,7 @@ module.exports = buildSchema(`
     home: [User!]!
     followers: [Follower!]!
     following: [Following!]!
+    searchUser(term: String!): [User!]!
   }
 
   type Token {
