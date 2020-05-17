@@ -14,8 +14,10 @@ const app = express();
 
 app.use(bodyParser.json());
 
+app.use(require('cors')());
+
 app.get('/', (req, res, next) => {
-  res.write('<h1>Hii, there</h1>');
+  res.status(200).write('<h1>Hii, there</h1>');
 });
 
 app.use(AuthMiddleware);
