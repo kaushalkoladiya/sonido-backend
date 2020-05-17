@@ -15,7 +15,7 @@ module.exports = buildSchema(`
 
   type RootQuery {
     login(loginData: LoginInputData): Token!
-    home: [User!]!
+    home: Home!
     followers: [Follower!]!
     following: [Following!]!
     searchUser(term: String!): [User!]!
@@ -64,6 +64,51 @@ module.exports = buildSchema(`
     updatedAt: String!
   }
 
+  type ReceivedDedication {
+    _id: ID!
+    sender: User!
+    receiver: String!
+    previewUrl: String!
+    artworkUrl: String!
+    releasedDate: String!
+    genre: String!
+    trackName: String!
+    artistName: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type SendedDedication {
+    _id: ID!
+    sender: String!
+    receiver: User!
+    previewUrl: String!
+    artworkUrl: String!
+    releasedDate: String!
+    genre: String!
+    trackName: String!
+    artistName: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type Notification {
+    _id: ID!
+    sender: String!
+    receiver: String!
+    type: String!
+    dedicateId: Dedicate,
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type Home {
+    users: [User!]!
+    receivedDedications: [ReceivedDedication!]!
+    sendedDedications: [SendedDedication!]!
+    notifications: [Notification!]!
+  }
+
   input SignupInputData {
     email: String!
     username: String!
@@ -89,6 +134,4 @@ module.exports = buildSchema(`
     trackName: String!
     artistName: String!
   }
-
-
 `);

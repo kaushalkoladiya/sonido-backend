@@ -72,6 +72,11 @@ module.exports = {
   },
 
   home: (args, req) => {
+    if (!req.isAuth) {
+      const err = new Error('Action Forbidden');
+      err.code = 403;
+      throw err;
+    }
     return HomeController.home(args, req);
   },
 

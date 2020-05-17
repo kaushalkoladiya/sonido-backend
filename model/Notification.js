@@ -19,7 +19,7 @@ const notificationSchema = new Schema({
     required: true,
     type: String
   },
-  dedicatedId: {
+  dedicateId: {
     type: mongoose.Types.ObjectId,
     ref: "Dedicate"
   }

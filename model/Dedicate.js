@@ -5,11 +5,13 @@ const Schema = mongoose.Schema;
 const DedicateSchema = new Schema({
   sender: {
     required: true,
-    type: mongoose.Types.ObjectId
+    type: mongoose.Types.ObjectId,
+    ref: 'User'
   },
   receiver: {
     required: true,
-    type: mongoose.Types.ObjectId
+    type: mongoose.Types.ObjectId,
+    ref: 'User'
   },
   previewUrl: {
     required: true,
