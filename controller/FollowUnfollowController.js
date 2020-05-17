@@ -1,4 +1,5 @@
 const FollowUnfollow = require('../model/FollowUnfollow');
+const Notification = require('../model/Notification');
 
 exports.follow = async (_id, req) => {
   const isFollow = await FollowUnfollow.exists({ from: req.userId, to: _id });
@@ -8,6 +9,11 @@ exports.follow = async (_id, req) => {
     throw err;
   }
   await FollowUnfollow.create({ from: req.userId, to: _id });
+  await Notification.create({
+    sender: req.userId,
+    receiver: _id,
+    type: 'follow',
+  });
 
   return `Okay, now you are following ${_id}`;
 }

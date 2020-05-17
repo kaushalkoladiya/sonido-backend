@@ -52,7 +52,7 @@ module.exports = buildSchema(`
   type Dedicate {
     _id: ID!
     sender: String!
-    reciever: String!
+    receiver: String!
     previewUrl: String!
     artworkUrl: String!
     releasedDate: String!
@@ -80,7 +80,7 @@ module.exports = buildSchema(`
   }
 
   input DedicateInputData {
-    reciever: String!
+    receiver: String!
     previewUrl: String!
     artworkUrl: String!
     releasedDate: String!

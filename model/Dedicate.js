@@ -7,7 +7,7 @@ const DedicateSchema = new Schema({
     required: true,
     type: mongoose.Types.ObjectId
   },
-  reciever: {
+  receiver: {
     required: true,
     type: mongoose.Types.ObjectId
   },
