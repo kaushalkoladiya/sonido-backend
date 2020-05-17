@@ -5,6 +5,7 @@ const User = require('../model/User');
 const AuthController = require('../controller/AuthController');
 const HomeController = require('../controller/HomeController');
 const FollowUnfollowController = require('../controller/FollowUnfollowController');
+const DedicateController = require('../controller/DedicateController');
 
 
 niv.extend('unique', async ({ value, args }) => {
@@ -124,5 +125,21 @@ module.exports = {
 
     return FollowUnfollowController.following(args, req);
   },
+
+  dedicate: ({ dedicateData }, req) => {
+    if (!req.isAuth) {
+      const err = new Error('Action Forbidden');
+      err.code = 403;
+      throw err;
+    }
+
+    if (dedicateData.reciever === req.userId) {
+      const err = new Error('You cannot dedicate song to yourself.');
+      err.code = 400;
+      throw err;
+    }
+
+    return DedicateController.dedicate(dedicateData, req);
+  }
 
 }

@@ -10,6 +10,7 @@ module.exports = buildSchema(`
     signup(signupData: SignupInputData): Token!
     follow(followunfollowData: FollowUnfollowInputData): String!
     unfollow(followunfollowData: FollowUnfollowInputData): String!
+    dedicate(dedicateData: DedicateInputData): Dedicate!
   }
 
   type RootQuery {
@@ -48,6 +49,20 @@ module.exports = buildSchema(`
     to: User!
   }
 
+  type Dedicate {
+    _id: ID!
+    sender: String!
+    reciever: String!
+    previewUrl: String!
+    artworkUrl: String!
+    releasedDate: String!
+    genre: String!
+    trackName: String!
+    artistName: String!
+    createdAt: String!
+    updatedAt: String!
+  }
+
   input SignupInputData {
     email: String!
     username: String!
@@ -64,6 +79,15 @@ module.exports = buildSchema(`
     _id: ID!
   }
 
+  input DedicateInputData {
+    reciever: String!
+    previewUrl: String!
+    artworkUrl: String!
+    releasedDate: String!
+    genre: String!
+    trackName: String!
+    artistName: String!
+  }
 
 
 `);
