@@ -70,8 +70,6 @@ module.exports = buildSchema(`
     receiver: String!
     previewUrl: String!
     artworkUrl: String!
-    releasedDate: String!
-    genre: String!
     trackName: String!
     artistName: String!
     createdAt: String!
@@ -84,8 +82,6 @@ module.exports = buildSchema(`
     receiver: User!
     previewUrl: String!
     artworkUrl: String!
-    releasedDate: String!
-    genre: String!
     trackName: String!
     artistName: String!
     createdAt: String!

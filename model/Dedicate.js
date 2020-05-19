@@ -21,14 +21,6 @@ const DedicateSchema = new Schema({
     required: true,
     type: String
   },
-  releasedDate: {
-    required: true,
-    type: String
-  },
-  genre: {
-    required: true,
-    type: String
-  },
   trackName: {
     required: true,
     type: String
