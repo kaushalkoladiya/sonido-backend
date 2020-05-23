@@ -5,7 +5,7 @@ const Dedicate = require('../model/Dedicate');
 exports.home = async (args, req) => {
   const users = await User.find({ _id: { $ne: req.userId } }).sort({ createdAt: -1 }).limit(10);
 
-  const notifications = await Notification.find({ receiver: req.userId }).populate('dedicateId');
+  const notifications = await Notification.find({ receiver: req.userId }).populate('sender').populate('dedicateId');
   const receivedDedications = await Dedicate.find({ receiver: req.userId }).populate('sender');
   const sendedDedications = await Dedicate.find({ sender: req.userId }).populate('receiver');
 

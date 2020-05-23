@@ -20,7 +20,7 @@ module.exports = buildSchema(`
     followers: [Follower!]!
     following: [Following!]!
     searchUser(term: String!): [User!]!
-    showUser(_id: String!): User!
+    showUser(_id: String!): ShowUser!
   }
 
   type Token {
@@ -50,6 +50,11 @@ module.exports = buildSchema(`
     _id: ID!
     from: String!
     to: User!
+  }
+
+  type ShowUser {
+    user: User!
+    follow: Boolean!
   }
 
   type Dedicate {
@@ -90,7 +95,7 @@ module.exports = buildSchema(`
 
   type Notification {
     _id: ID!
-    sender: String!
+    sender: User!
     receiver: String!
     type: String!
     dedicateId: Dedicate,

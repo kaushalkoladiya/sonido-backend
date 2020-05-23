@@ -1,4 +1,5 @@
 const User = require('../model/User');
+const FollowUnfollow = require('../model/FollowUnfollow');
 
 exports.search = async (term, req) => {
   const users = await User
@@ -23,12 +24,16 @@ exports.search = async (term, req) => {
 }
 
 exports.show = async (_id, req) => {
+  const isFollowing = await FollowUnfollow.exists({ to: _id, from: req.userId });
   const user = await User.findById(_id);
   return {
-    ...user._doc,
-    _id: user._id.toString(),
-    createdAt: user.createdAt.toISOString(),
-    updatedAt: user.updatedAt.toISOString(),
+    user: {
+      ...user._doc,
+      _id: user._id.toString(),
+      createdAt: user.createdAt.toISOString(),
+      updatedAt: user.updatedAt.toISOString(),
+    },
+    follow: isFollowing
   }
 }
 
